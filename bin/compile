@@ -1,1 +1,17 @@
 #!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir>
+set -e
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+
+echo "-----> Installing libsodium"
+
+cd $BUILD_DIR
+curl --silent --remote-name https://github.com/jedisct1/libsodium/releases/download/0.4.2/libsodium-0.4.2.tar.gz
+tar -xf libsodium-0.4.2.tar.gz
+cd libsodium-0.4.2
+./configure --prefix=$BUILD_DIR/libsodium
+make
+make check
+make install
