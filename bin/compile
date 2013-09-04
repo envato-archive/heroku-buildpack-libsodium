@@ -12,6 +12,7 @@ cd $BUILD_DIR
 curl --silent --remote-name --insecure --location https://github.com/jedisct1/libsodium/releases/download/0.4.2/libsodium-0.4.2.tar.gz
 tar -xf libsodium-0.4.2.tar.gz
 cd libsodium-0.4.2
+echo "-----> Compiling libsodium `pwd`"
 ./configure --prefix=$BUILD_DIR/libsodium
 make
 make check
