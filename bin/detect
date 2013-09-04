@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "libsodium"
+exit 0
