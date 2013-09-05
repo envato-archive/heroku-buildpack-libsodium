@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 
-echo "--- {}"
+BUILD_DIR=$1
+
+cat <<EOF
+---
+config_vars:
+  LD_LIBRARY_PATH: $BUILD_DIR/vendor/libsodium-0.4.2/src/libsodium
+EOF
