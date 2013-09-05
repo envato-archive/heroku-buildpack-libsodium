@@ -15,10 +15,6 @@ VENDOR_PATH=$BUILD_DIR/vendor
 TARBALL=$SODIUM_DIR.tar.gz
 TARBALL_URL=https://github.com/jedisct1/libsodium/releases/download/$VERSION/$TARBALL
 
-cd $BUILD_DIR
-echo `pwd`
-echo `ls`
-
 mkdir -p $VENDOR_PATH
 cd $VENDOR_PATH
 
@@ -34,9 +30,6 @@ echo "done"
 
 echo -n "-----> Compiling libsodium... "
 make &> /dev/null
-make check &> /dev/null
-make install &> /dev/null
+# make check &> /dev/null
+# make install &> /dev/null
 echo "done"
-
-echo `pwd`
-echo `ls`
