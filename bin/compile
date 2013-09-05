@@ -1,19 +1,36 @@
 #!/usr/bin/env bash
-# bin/compile <build-dir> <cache-dir>
 
-indent() {
-  sed -u 's/^/       /'
-}
+set -e
 
 BUILD_DIR=$1
 CACHE_DIR=$2
 
+indent() {
+  sed -u "s/^/       /"
+}
+
+VERSION=0.4.2
+DIRECTORY=libsodium-$VERSION
+TARBALL=$DIRECTORY.tar.gz
+TARBALL_URL=https://github.com/jedisct1/libsodium/releases/download/$VERSION/$TARBALL
+
 cd $BUILD_DIR
-curl --silent --remote-name --insecure --location https://github.com/jedisct1/libsodium/releases/download/0.4.2/libsodium-0.4.2.tar.gz
-tar -xf libsodium-0.4.2.tar.gz
-cd libsodium-0.4.2
-echo "-----> Compiling libsodium `pwd`"
-./configure --prefix=$BUILD_DIR/libsodium
-make
-make check
-make install
+
+echo -n "-----> Fetching libsodium... "
+curl --silent --remote-name --insecure --location $TARBALL_URL
+tar -xf $TARBALL
+cd $DIRECTORY
+echo "done"
+
+echo -n "-----> Configuring libsodium... "
+./configure --silent --disable-debug --disable-dependency-tracking
+echo "done"
+
+echo -n "-----> Compiling libsodium... "
+make &> /dev/null
+echo "done"
+
+echo -n "-----> Saving libsodium.so in cache dir ($CACHE_DIR/$DIRECTORY)... "
+mkdir -p $CACHE_DIR/$DIRECTORY
+cp src/libsodium/.libs/libsodium.so $CACHE_DIR/$DIRECTORY/libsodium.so
+echo "done"
