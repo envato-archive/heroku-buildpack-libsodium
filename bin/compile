@@ -10,16 +10,22 @@ indent() {
 }
 
 VERSION=0.4.2
-DIRECTORY=libsodium-$VERSION
-TARBALL=$DIRECTORY.tar.gz
+SODIUM_DIR=libsodium-$VERSION
+VENDOR_PATH=$BUILD_DIR/vendor
+TARBALL=$SODIUM_DIR.tar.gz
 TARBALL_URL=https://github.com/jedisct1/libsodium/releases/download/$VERSION/$TARBALL
 
 cd $BUILD_DIR
+echo `pwd`
+echo `ls`
+
+mkdir -p $VENDOR_PATH
+cd $VENDOR_PATH
 
 echo -n "-----> Fetching libsodium... "
 curl --silent --remote-name --insecure --location $TARBALL_URL
 tar -xf $TARBALL
-cd $DIRECTORY
+cd $SODIUM_DIR
 echo "done"
 
 echo -n "-----> Configuring libsodium... "
@@ -28,9 +34,9 @@ echo "done"
 
 echo -n "-----> Compiling libsodium... "
 make &> /dev/null
+make check &> /dev/null
+make install &> /dev/null
 echo "done"
 
-echo -n "-----> Saving libsodium.so in cache dir ($CACHE_DIR/$DIRECTORY)... "
-mkdir -p $CACHE_DIR/$DIRECTORY
-cp src/libsodium/.libs/libsodium.so $CACHE_DIR/$DIRECTORY/libsodium.so
-echo "done"
+echo `pwd`
+echo `ls`
