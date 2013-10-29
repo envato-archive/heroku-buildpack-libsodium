@@ -15,8 +15,6 @@ indent() {
   sed -u "s/^/       /"
 }
 
-rm -rf $CACHE_PATH/$SODIUM_DIR
-
 if [ ! -d $CACHE_PATH/$SODIUM_DIR ];
 then
   cd $CACHE_PATH
