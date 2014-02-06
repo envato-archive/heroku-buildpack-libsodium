@@ -31,7 +31,15 @@ then
   echo "done"
 
   echo -n "-----> Compiling libsodium... "
-  make &> /dev/null
+  make
+  echo "done"
+  
+  echo -n "-----> Checking libsodium... "
+  make check
+  echo "done"
+  
+  echo -n "-----> Installing libsodium... "
+  make install
   echo "done"
 fi
 
