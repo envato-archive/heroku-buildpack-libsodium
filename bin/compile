@@ -31,7 +31,7 @@ then
   echo "done"
 
   echo -n "-----> Compiling libsodium... "
-  make
+  make &> /dev/null
   echo "done"
 fi
 
