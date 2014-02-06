@@ -33,14 +33,6 @@ indent() {
   echo -n "-----> Compiling libsodium... "
   make
   echo "done"
-  
-  echo -n "-----> Checking libsodium... "
-  make check
-  echo "done"
-  
-  echo -n "-----> Installing libsodium... "
-  make install
-  echo "done"
 # fi
 
 echo -n "-----> Copying libsodium ($VERSION)... "
