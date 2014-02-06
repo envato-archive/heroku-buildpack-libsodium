@@ -15,8 +15,8 @@ indent() {
   sed -u "s/^/       /"
 }
 
-if [ ! -d $CACHE_PATH/$SODIUM_DIR ];
-then
+# if [ ! -d $CACHE_PATH/$SODIUM_DIR ];
+# then
   cd $CACHE_PATH
 
   echo -n "-----> Fetching libsodium... "
@@ -41,7 +41,7 @@ then
   echo -n "-----> Installing libsodium... "
   make install
   echo "done"
-fi
+# fi
 
 echo -n "-----> Copying libsodium ($VERSION)... "
 mkdir -p $BUILD_PATH/vendor
