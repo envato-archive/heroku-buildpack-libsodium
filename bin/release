@@ -3,5 +3,5 @@
 cat <<EOF
 ---
 config_vars:
-  LD_LIBRARY_PATH: vendor/libsodium-0.4.2/src/libsodium/.libs
+  LD_LIBRARY_PATH: vendor/libsodium-0.4.5/src/libsodium/.libs
 EOF
