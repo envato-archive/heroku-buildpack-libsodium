@@ -6,7 +6,7 @@ mkdir -p "$1" "$2"
 BUILD_PATH=$(cd "$1/" && pwd)
 CACHE_PATH=$(cd "$2/" && pwd)
 
-VERSION=1.0.0
+VERSION=1.0.2
 SODIUM_DIR=libsodium-$VERSION
 TARBALL=$SODIUM_DIR.tar.gz
 TARBALL_URL=https://download.libsodium.org/libsodium/releases/$TARBALL
